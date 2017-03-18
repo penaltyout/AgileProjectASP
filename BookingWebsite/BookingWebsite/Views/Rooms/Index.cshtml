@@ -9,7 +9,12 @@
         @foreach (var item in Model)
         {
             <h1>@item.Name</h1>
-            <h2>@item.Description</h2>
+            <ul>
+                <li>@item.Size</li>
+                <li>@item.Price</li>
+                <li>@item.Description</li>
+            </ul>
+            
         }
     </body>
 </html>

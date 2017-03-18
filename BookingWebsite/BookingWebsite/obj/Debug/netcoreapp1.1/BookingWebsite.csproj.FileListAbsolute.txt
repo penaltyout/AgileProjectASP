@@ -34,3 +34,12 @@ C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Deb
 C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.AssemblyInfo.cs
 C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.dll
 C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.pdb
+C:\Users\mcpni\OneDrive\Dokument\AgileProjectASP\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.deps.json
+C:\Users\mcpni\OneDrive\Dokument\AgileProjectASP\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.runtimeconfig.json
+C:\Users\mcpni\OneDrive\Dokument\AgileProjectASP\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.runtimeconfig.dev.json
+C:\Users\mcpni\OneDrive\Dokument\AgileProjectASP\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.dll
+C:\Users\mcpni\OneDrive\Dokument\AgileProjectASP\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.pdb
+C:\Users\mcpni\OneDrive\Dokument\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.AssemblyInfo.cs
+C:\Users\mcpni\OneDrive\Dokument\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.dll
+C:\Users\mcpni\OneDrive\Dokument\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.pdb
+C:\Users\mcpni\OneDrive\Dokument\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.csprojResolveAssemblyReference.cache

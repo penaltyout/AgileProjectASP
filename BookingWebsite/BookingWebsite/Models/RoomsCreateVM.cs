@@ -15,5 +15,13 @@ namespace BookingWebsite.Models
         [Display(Name = "Description")]
         [Required(ErrorMessage = "*Description required")]
         public string Description { get; set; }
+
+        [Display(Name = "Price")]
+        [Required(ErrorMessage = "*Price required")]
+        public int Price { get; set; }
+
+        [Display(Name = "Size")]
+        [Required(ErrorMessage = "*Size required")]
+        public int Size { get; set; }
     }
 }

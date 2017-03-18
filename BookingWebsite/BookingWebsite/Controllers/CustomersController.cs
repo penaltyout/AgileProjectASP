@@ -49,7 +49,7 @@ namespace BookingWebsite.Controllers
             var usr = new UserCreateVM
             {
                 Password = Request.Cookies["Password"],
-                Email = Request.Cookies["Username"],
+                Email = Request.Cookies["Email"],
                 Username = Request.Cookies["Username"]
             };
             context.AddUser(usr);

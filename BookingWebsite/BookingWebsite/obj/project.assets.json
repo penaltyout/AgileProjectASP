@@ -10317,15 +10317,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SEBE\\.nuget\\packages\\": {}
+    "C:\\Users\\mcpni\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SEBE\\Source\\Repos\\AgileProjectASP\\BookingWebsite\\BookingWebsite\\BookingWebsite.csproj",
+      "projectUniqueName": "C:\\Users\\mcpni\\OneDrive\\Dokument\\AgileProjectASP\\BookingWebsite\\BookingWebsite\\BookingWebsite.csproj",
       "projectName": "BookingWebsite",
-      "projectPath": "C:\\Users\\SEBE\\Source\\Repos\\AgileProjectASP\\BookingWebsite\\BookingWebsite\\BookingWebsite.csproj",
-      "outputPath": "C:\\Users\\SEBE\\Source\\Repos\\AgileProjectASP\\BookingWebsite\\BookingWebsite\\obj\\",
+      "projectPath": "C:\\Users\\mcpni\\OneDrive\\Dokument\\AgileProjectASP\\BookingWebsite\\BookingWebsite\\BookingWebsite.csproj",
+      "outputPath": "C:\\Users\\mcpni\\OneDrive\\Dokument\\AgileProjectASP\\BookingWebsite\\BookingWebsite\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"

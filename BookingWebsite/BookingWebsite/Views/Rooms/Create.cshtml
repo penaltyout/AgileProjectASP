@@ -12,8 +12,14 @@
             <label asp-for="Name"></label>
             <input asp-for="Name" />
             <span style="color:red" asp-validation-for="Name"></span> <br />
+            <label asp-for="Size"></label>
+            <input asp-for="Size" />
+            <span style="color:red" asp-validation-for="Size"></span> <br />
+            <label asp-for="Price"></label>
+            <input asp-for="Price" />
+            <span style="color:red" asp-validation-for="Price"></span> <br />
             <label asp-for="Description"></label>
-            <input asp-for="Description" />
+            <input asp-for="Description" /> 
             <span style="color:red" asp-validation-for="Description"></span> <br />
 
             <input type="submit" value="Submit" onclick="RegistrationMessage()" />

@@ -38,7 +38,9 @@ namespace BookingWebsite.Models.Entities
             var roomToAdd = new Room
             {
                 Name = room.Name,
-                Description = room.Description
+                Description = room.Description,
+                Price = room.Price,
+                Size = room.Size
             };
 
             Room.Add(roomToAdd);
@@ -60,7 +62,7 @@ namespace BookingWebsite.Models.Entities
         {
             var userToAdd = new User
             {
-                Customer_Id = Customer.SingleOrDefault(i => i.Email == user.Email).CustomerId,
+                Customer_Id = Customer.Single(i => i.Email == user.Email).CustomerId,
                 Password = user.Password,
                 Username = user.Username
             };
