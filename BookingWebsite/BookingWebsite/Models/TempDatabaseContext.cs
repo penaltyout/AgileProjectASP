@@ -54,8 +54,13 @@ namespace BookingWebsite.Models.Entities
 
         public Room[] GetRoomsForIndex()
         {
-            return this.Room.Where(o => o.Name == "Nobel").ToArray();
+            return this.Room.ToArray();
             //return this.Room.Where(o => o.Name == "Nobel").ToArray();
+        }
+
+        public Room GetRoomForDetail(int id)
+        {
+            return this.Room.Where(o => o.RoomId == id).Single();
         }
 
         public void AddUser(UserCreateVM user)

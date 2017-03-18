@@ -37,5 +37,12 @@ namespace BookingWebsite.Controllers
             context.AddRoom(room);
             return RedirectToAction(nameof(RoomsController.Index));
         }
+
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            var model = context.GetRoomForDetail(id);
+            return View(model);
+        }
     }
 }

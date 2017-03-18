@@ -1,4 +1,5 @@
 ﻿@using BookingWebsite.Models.Entities;
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
 @model Room[]
 <!DOCTYPE html>
 <html>
@@ -8,11 +9,8 @@
     <body>
         @foreach (var item in Model)
         {
-            <h1>@item.Name</h1>
             <ul>
-                <li>@item.Size</li>
-                <li>@item.Price</li>
-                <li>@item.Description</li>
+                <li><a asp-controller="Rooms" asp-action="Detail" asp-route-id="@item.RoomId">@item.Name</a></li>
             </ul>
             
         }
