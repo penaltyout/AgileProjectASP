@@ -1,0 +1,52 @@
+﻿@using BookingWebsite.Models
+@model CustomersCreateVM
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create a customer</title>
+        <script src="~/js/JavaScript.js"></script>
+    </head>
+    <body>
+        <form asp-controller="customers" asp-action="create">
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" />
+            <span style="color:red" asp-validation-for="FirstName"></span> <br />
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" />
+            <span style="color: red" asp-validation-for="LastName"></span> <br />
+            <label asp-for="Telephone"></label>
+            <input asp-for="Telephone" />
+            <span style="color: red" asp-validation-for="Telephone"></span> <br />
+            <label asp-for="Mobilephone"></label>
+            <input asp-for="Mobilephone" />
+            <span style="color: red" asp-validation-for="Mobilephone"></span> <br />
+            <label asp-for="AddressLine1"></label>
+            <input asp-for="AddressLine1" />
+            <span style="color: red" asp-validation-for="AddressLine1"></span> <br />
+            <label asp-for="AddressLine2"></label>
+            <input asp-for="AddressLine2" />
+            <span style="color: red" asp-validation-for="AddressLine2"></span> <br />
+            <label asp-for="ZipCode"></label>
+            <input asp-for="ZipCode" />
+            <span style="color: red" asp-validation-for="ZipCode"></span> <br />
+            <label asp-for="City"></label>
+            <input asp-for="City" />
+            <span style="color: red" asp-validation-for="City"></span> <br />
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+            <span style="color: red" asp-validation-for="Email"></span> <br />
+            <label asp-for="SocialSecurityNumber"></label>
+            <input asp-for="SocialSecurityNumber" />
+            <span style="color: red" asp-validation-for="SocialSecurityNumber"></span> <br />
+            <label asp-for="Password"></label>
+            <input asp-for="Password" />
+            <span style="color: red" asp-validation-for="Password"></span> <br />
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" />
+            <span style="color: red" asp-validation-for="UserName"></span> <br />
+
+            <input type="submit" value="Submit" onclick="RegistrationMessage()"/>
+        </form>
+    </body>
+</html>

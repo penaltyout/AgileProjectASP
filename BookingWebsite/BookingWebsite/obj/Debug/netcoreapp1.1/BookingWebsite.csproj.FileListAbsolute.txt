@@ -1,0 +1,36 @@
+C:\Users\ludde\Source\dokument\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.deps.json
+C:\Users\ludde\Source\dokument\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.runtimeconfig.json
+C:\Users\ludde\Source\dokument\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.runtimeconfig.dev.json
+C:\Users\ludde\Source\dokument\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.dll
+C:\Users\ludde\Source\dokument\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.AssemblyInfo.cs
+C:\Users\ludde\Source\dokument\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.pdb
+C:\Users\ludde\Source\dokument\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.csprojResolveAssemblyReference.cache
+C:\Users\ludde\Source\dokument\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.dll
+C:\Users\ludde\Source\dokument\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.pdb
+C:\Users\Roger och Stina\Desktop\Agilt Projekt\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.deps.json
+C:\Users\Roger och Stina\Desktop\Agilt Projekt\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.runtimeconfig.json
+C:\Users\Roger och Stina\Desktop\Agilt Projekt\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.runtimeconfig.dev.json
+C:\Users\Roger och Stina\Desktop\Agilt Projekt\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.dll
+C:\Users\Roger och Stina\Desktop\Agilt Projekt\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.pdb
+C:\Users\Roger och Stina\Desktop\Agilt Projekt\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.csprojResolveAssemblyReference.cache
+C:\Users\Roger och Stina\Desktop\Agilt Projekt\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.AssemblyInfo.cs
+C:\Users\Roger och Stina\Desktop\Agilt Projekt\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.dll
+C:\Users\Roger och Stina\Desktop\Agilt Projekt\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.pdb
+C:\Users\ludde\Desktop\Update\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.deps.json
+C:\Users\ludde\Desktop\Update\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.runtimeconfig.json
+C:\Users\ludde\Desktop\Update\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.runtimeconfig.dev.json
+C:\Users\ludde\Desktop\Update\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.dll
+C:\Users\ludde\Desktop\Update\AgileProjekt\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.pdb
+C:\Users\ludde\Desktop\Update\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.csprojResolveAssemblyReference.cache
+C:\Users\ludde\Desktop\Update\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.AssemblyInfo.cs
+C:\Users\ludde\Desktop\Update\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.dll
+C:\Users\ludde\Desktop\Update\AgileProjekt\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.pdb
+C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.deps.json
+C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.runtimeconfig.json
+C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.runtimeconfig.dev.json
+C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.dll
+C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\bin\Debug\netcoreapp1.1\BookingWebsite.pdb
+C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.csprojResolveAssemblyReference.cache
+C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.AssemblyInfo.cs
+C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.dll
+C:\Users\SEBE\Source\Repos\AgileProjectASP\BookingWebsite\BookingWebsite\obj\Debug\netcoreapp1.1\BookingWebsite.pdb

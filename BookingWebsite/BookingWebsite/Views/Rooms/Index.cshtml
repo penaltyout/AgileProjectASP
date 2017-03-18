@@ -1,0 +1,15 @@
+﻿@using BookingWebsite.Models.Entities;
+@model Room[]
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>List of rooms</title>
+    </head>
+    <body>
+        @foreach (var item in Model)
+        {
+            <h1>@item.Name</h1>
+            <h2>@item.Description</h2>
+        }
+    </body>
+</html>
