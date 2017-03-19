@@ -49,7 +49,7 @@ namespace BookingWebsite.Models.Entities
 
         public Customer[] GetCustomersForIndex()
         {
-            return this.Customer.Where(o => o.FirstName == "korv").ToArray();
+            return this.Customer.ToArray();
         }
 
         public Room[] GetRoomsForIndex()
@@ -72,6 +72,56 @@ namespace BookingWebsite.Models.Entities
                 Username = user.Username
             };
             User.Add(userToAdd);
+            SaveChanges();
+        }
+
+        public void AddBooking(BookingsCreateVM booking)
+        {
+            var bookingToAdd = new Booking
+            {
+                //BookingId = booking.BookingId,
+                Customer_Id = Customer.Single(i => i.CustomerId == booking.CustomerId).CustomerId,
+                Room_Id = Room.Single(i => i.RoomId == booking.RoomId).RoomId,
+                StartDate = booking.StartDate,
+                EndDate = booking.EndDate,
+                Statuscode = booking.Statuscode
+            };
+
+            Booking.Add(bookingToAdd);
+            SaveChanges();
+        }
+
+        public Booking[] GetBookingsForIndex()
+        {
+            return this.Booking.ToArray();
+        }
+
+        public Booking GetBookingForDetail(int id)
+        {
+            return this.Booking.Where(o => o.BookingId == id).Single();
+        }
+
+        public Customer GetCustomerForDetail(int id)
+        {
+            return this.Customer.Where(o => o.CustomerId == id).Single();
+            //return Customer.SingleOrDefault(i => i.CustomerId == id);
+        }
+
+        internal void EditCustomer(Customer customer)
+        {
+            var customerToEdit = Customer.Find(customer.CustomerId);
+            customerToEdit.FirstName = customer.FirstName;
+            customerToEdit.LastName = customer.LastName;
+            customerToEdit.Telephone = customer.Telephone;
+            SaveChanges();
+        }
+
+        internal void EditBooking(Booking booking)
+        {
+            var bookingToEdit = Booking.Find(booking.BookingId);
+            bookingToEdit.Room_Id = booking.Room_Id;
+            bookingToEdit.StartDate = booking.StartDate;
+            bookingToEdit.EndDate = booking.EndDate;
             SaveChanges();
         }
     }

@@ -16,6 +16,7 @@ namespace BookingWebsite.Controllers
         {
             this.context = context;
         }
+
         public IActionResult Index()
         {
             var models = context.GetRoomsForIndex();

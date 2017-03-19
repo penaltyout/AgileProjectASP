@@ -10,9 +10,7 @@ namespace BookingWebsite.Controllers
 {
     public class CustomersController : Controller
     {
-
-        TempDatabaseContext context;
-        
+        TempDatabaseContext context;   
 
         public CustomersController(TempDatabaseContext context)
         {
@@ -20,14 +18,13 @@ namespace BookingWebsite.Controllers
         }
         public IActionResult Index()
         {
-           var models = context.GetCustomersForIndex();
+            var models = context.GetCustomersForIndex();
             return View(models);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            
             return View();
         }
 
@@ -37,7 +34,7 @@ namespace BookingWebsite.Controllers
             if (!ModelState.IsValid)
                 return View();
             
-                context.AddCustomer(customer);
+            context.AddCustomer(customer);
             Response.Cookies.Append("Password", customer.Password);
             Response.Cookies.Append("Username", customer.UserName);
             Response.Cookies.Append("Email", customer.Email);
@@ -54,6 +51,26 @@ namespace BookingWebsite.Controllers
             };
             context.AddUser(usr);
             return RedirectToAction(nameof(CustomersController.Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var model = context.GetCustomerForDetail(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Customer customer)
+        {
+            context.EditCustomer(customer);
+            return RedirectToAction(nameof(CustomersController.Index));
+        }
+
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            var model = context.GetCustomerForDetail(id);
+            return View(model);
         }
     }
 }

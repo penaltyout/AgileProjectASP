@@ -8,6 +8,7 @@
         <script src="~/js/JavaScript.js"></script>
     </head>
     <body>
+        <h1>Create a room</h1>
         <form asp-controller="rooms" asp-action="create">
             <label asp-for="Name"></label>
             <input asp-for="Name" />
@@ -24,5 +25,6 @@
 
             <input type="submit" value="Submit" onclick="RegistrationMessage()" />
         </form>
+        <p><h4><a href="~/Home/Index">Back to main page</a></h4></p>
     </body>
 </html>

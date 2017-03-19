@@ -11,8 +11,6 @@ namespace BookingWebsite.Models.Entities
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<User> User { get; set; }
 
-     
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Booking>(entity =>
@@ -21,11 +19,11 @@ namespace BookingWebsite.Models.Entities
 
                 entity.Property(e => e.Customer_Id).HasColumnName("Customer_ID");
 
-                entity.Property(e => e.EndDate).HasColumnType("datetime");
-
                 entity.Property(e => e.Room_Id).HasColumnName("Room_Id");
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
+
+                entity.Property(e => e.EndDate).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Booking)
@@ -78,6 +76,9 @@ namespace BookingWebsite.Models.Entities
 
                 entity.Property(e => e.Size)
                     .IsRequired();
+
+                entity.Property(e => e.Statuscode)
+                    .HasColumnName("statuscode");
             });
 
             modelBuilder.Entity<User>(entity =>

@@ -1,0 +1,29 @@
+﻿@using BookingWebsite.Models.Entities
+@model Customer
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Info update</title>
+    </head>
+    <body>
+        <h1>Update personal information</h1>
+        <form asp-controller="customers" asp-action="edit">
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" />
+            <span style="color:red" asp-validation-for="FirstName"></span> <br />
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" />
+            <span style="color: red" asp-validation-for="LastName"></span> <br />
+            <label asp-for="Telephone"></label>
+            <input asp-for="Telephone" />
+            <span style="color: red" asp-validation-for="Telephone"></span> <br />
+            <label asp-for="CustomerId"></label>
+            <input asp-for="CustomerId" />
+            <span style="color:red" asp-validation-for="CustomerId"></span> <br />
+            <input type="submit" value="change" />
+        </form>
+        <p><h4><a href="~/Customers/Index">Back to customer list</a></h4></p>
+        <p><h4><a href="~/Home/Index">Back to main page</a></h4></p>
+    </body>
+</html>
