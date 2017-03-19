@@ -49,12 +49,12 @@ namespace BookingWebsite.Models.Entities
 
         public Customer[] GetCustomersForIndex()
         {
-            return this.Customer.Where(o => o.FirstName == "korv").ToArray();
+            return this.Customer.ToArray();
         }
 
         public Room[] GetRoomsForIndex()
         {
-            return this.Room.Where(o => o.Name == "Nobel").ToArray();
+            return this.Room.ToArray();
             //return this.Room.Where(o => o.Name == "Nobel").ToArray();
         }
 
@@ -62,12 +62,41 @@ namespace BookingWebsite.Models.Entities
         {
             var userToAdd = new User
             {
-                Customer_Id = Customer.Single(i => i.Email == user.Email).CustomerId,
+                CustomerId = Customer.Single(i => i.Email == user.Email).CustomerId,
                 Password = user.Password,
                 Username = user.Username
             };
             User.Add(userToAdd);
             SaveChanges();
+        }
+
+        public void AddBooking(BookingsCreateVM booking)
+        {
+            var bookingToAdd = new Booking
+            {
+                //BookingId = booking.BookingId,
+                CustomerId = Customer.Single(i => i.CustomerId == booking.CustomerId).CustomerId,
+                RoomId = Room.Single(i => i.RoomId == booking.RoomId).RoomId,
+                StartDate = booking.StartDate,
+                EndDate = booking.EndDate,
+                Statuscode = booking.Statuscode
+            };
+
+            Booking.Add(bookingToAdd);
+            SaveChanges();
+        }
+
+        public BookingsIndexVM[] GetBookingsForIndex()
+        {
+            return this.Booking.Select(i => new BookingsIndexVM
+            {
+                BookingId = i.BookingId,
+                CustomerId = i.CustomerId,
+                RoomId = i.RoomId,
+                StartDate = i.StartDate,
+                EndDate = i.EndDate,
+                Statuscode = i.Statuscode,
+            }).ToArray();
         }
     }
 }

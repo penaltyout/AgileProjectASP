@@ -11,7 +11,7 @@ namespace BookingWebsite.Models.Entities
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<User> User { get; set; }
 
-     
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,23 +19,23 @@ namespace BookingWebsite.Models.Entities
             {
                 entity.Property(e => e.BookingId).HasColumnName("BookingID");
 
-                entity.Property(e => e.Customer_Id).HasColumnName("Customer_ID");
+                entity.Property(e => e.CustomerId).HasColumnName("Customer_ID");
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Room_Id).HasColumnName("Room_Id");
+                entity.Property(e => e.RoomId).HasColumnName("Room_Id");
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Booking)
-                    .HasForeignKey(d => d.Customer_Id)
+                    .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_BookingCustomer");
 
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.Booking)
-                    .HasForeignKey(d => d.Room_Id)
+                    .HasForeignKey(d => d.RoomId)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_BookingRoom");
             });
@@ -65,36 +65,24 @@ namespace BookingWebsite.Models.Entities
 
             modelBuilder.Entity<Room>(entity =>
             {
-                entity.Property(e => e.Description)
-                    .IsRequired()
-                    .HasMaxLength(500);
+                entity.Property(e => e.Description).HasMaxLength(500);
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(100);
+                entity.Property(e => e.Name).HasMaxLength(100);
 
-                entity.Property(e => e.Price)
-                    .IsRequired();
-
-                entity.Property(e => e.Size)
-                    .IsRequired();
+                entity.Property(e => e.Statuscode).HasColumnName("statuscode");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Customer_Id).HasColumnName("Customer_Id");
+                entity.Property(e => e.CustomerId).HasColumnName("Customer_Id");
 
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(100);
+                entity.Property(e => e.Password).HasMaxLength(100);
 
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.Username).HasMaxLength(50);
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.User)
-                    .HasForeignKey(d => d.Customer_Id)
+                    .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_CustomerUser");
             });
         }

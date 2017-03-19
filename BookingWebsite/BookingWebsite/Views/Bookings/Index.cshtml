@@ -1,0 +1,23 @@
+﻿@using BookingWebsite.Models
+@model BookingsIndexVM[]
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    @foreach(var item in @Model)
+    {
+        <br>
+        <ul>
+            <li>Booking Id: @item.BookingId</li>
+            <li>Customer Id: @item.CustomerId</li>
+            <li>Room Id: @item.RoomId</li>
+            <li>Booked from: @item.StartDate</li>
+            <li>To: @item.EndDate</li>
+            <li>Status: @item.Statuscode</li>
+        </ul>
+        <br>
+    }
+</body>
+</html>
