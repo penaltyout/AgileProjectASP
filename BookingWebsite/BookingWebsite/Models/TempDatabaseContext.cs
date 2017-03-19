@@ -98,5 +98,21 @@ namespace BookingWebsite.Models.Entities
                 Statuscode = i.Statuscode,
             }).ToArray();
         }
+
+        #region Non-functioning stuff
+        //public Booking GetBookingById(int id)
+        //{
+        //    return this.Booking.SingleOrDefault(i => i.BookingId == id);
+        //}
+
+        //internal void EditBooking(Booking booking)
+        //{
+        //    var bookingToEdit = Booking.Find(booking.BookingId);
+        //    bookingToEdit.RoomId = booking.RoomId;
+        //    bookingToEdit.StartDate = booking.StartDate;
+        //    bookingToEdit.EndDate = booking.EndDate;
+        //    SaveChanges();
+        //}
+    #endregion
     }
 }

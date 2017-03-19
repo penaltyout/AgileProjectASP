@@ -45,7 +45,22 @@ namespace BookingWebsite.Controllers
                 return View();
 
             context.AddBooking(booking);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(BookingsController.Index));
         }
+
+        #region Non-functional
+        //public IActionResult Edit(int id)
+        //{
+        //    var model = context.GetBookingById(id);
+        //    return View(model);
+        //}
+
+        //[HttpPost]
+        //public IActionResult Edit(Booking booking)
+        //{
+        //    context.EditBooking(booking);
+        //    return RedirectToAction(nameof(BookingsController.Index));
+        //}
+        #endregion
     }
 }
