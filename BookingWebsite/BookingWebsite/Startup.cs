@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using BookingWebsite.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace BookingWebsite
 {
@@ -17,14 +18,20 @@ namespace BookingWebsite
       
         public void ConfigureServices(IServiceCollection services)
         {
-            var connString = @"Data Source=bookinz.database.windows.net;Initial Catalog=Bookinz;Persist Security Info=True;User ID=bookinz_web;Password=Sun16Experts";
-                           //var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TempDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" ;
-            services.AddDbContext<TempDatabaseContext>(options =>
+            var connString = @"Data Source=bookinz.database.windows.net;Initial Catalog=Bookinz;Persist Security Info=True;User ID=bookinz;Password=8zb-KqP-7Uz-ycA";
+            //var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TempDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" ;
+            services.AddDbContext<HotelASPContext>(options =>
                 options.UseSqlServer(connString));
+            services.AddDbContext<IdentityDbContext>(o => o.UseSqlServer(connString));
+            services.AddIdentity<IdentityUser, IdentityRole>().
+            AddEntityFrameworkStores<IdentityDbContext>().
+
+            AddDefaultTokenProviders();
+
             services.AddSession();
             services.AddMemoryCache();
             services.AddMvc();
-            
+
         }
 
        
@@ -37,6 +44,7 @@ namespace BookingWebsite
                 app.UseStaticFiles();
                 app.UseSession();
                 app.UseDeveloperExceptionPage();
+                app.UseIdentity();
                 app.UseMvcWithDefaultRoute();
             }
 

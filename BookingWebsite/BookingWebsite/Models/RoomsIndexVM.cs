@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace BookingWebsite.Models.Entities
+namespace BookingWebsite.Models
 {
-    public partial class Room
+    public class RoomsIndexVM
     {
-        public Room()
-        {
-            Booking = new HashSet<Booking>();
-        }
-
         public int Id { get; set; }
         public string Name { get; set; }
         public int Number { get; set; }
@@ -17,7 +14,5 @@ namespace BookingWebsite.Models.Entities
         public int? Price { get; set; }
         public int? Size { get; set; }
         public int? Statuscode { get; set; }
-
-        public virtual ICollection<Booking> Booking { get; set; }
     }
 }

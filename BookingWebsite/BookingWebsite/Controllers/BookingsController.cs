@@ -10,59 +10,59 @@ namespace BookingWebsite.Controllers
 {
     public class BookingsController : Controller
     {
-        TempDatabaseContext context;
+        HotelASPContext context;
 
-        public BookingsController(TempDatabaseContext context)
+        public BookingsController(HotelASPContext context)
         {
             this.context = context;
         }
 
-        public IActionResult Index()
-        {
-            if (!ModelState.IsValid)
-                return View();
-            else
-            {
-                var models = context.GetBookingsForIndex();
+        //public IActionResult Index()
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View();
+        //    else
+        //    {
+        //        var models = context.GetBookingsForIndex();
 
-                return View(models);
-            }
-        }
+        //        return View(models);
+        //    }
+        //}
 
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public IActionResult Create(BookingsCreateVM booking)
-        {
-            if (!ModelState.IsValid)
-                return View();
+        //[HttpPost]
+        //public IActionResult Create(BookingsCreateVM booking)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View();
 
-            context.AddBooking(booking);
-            return RedirectToAction("Index");
-        }
+        //    context.AddBooking(booking);
+        //    return RedirectToAction("Index");
+        //}
 
-        public IActionResult Edit(int id)
-        {
-            var model = context.GetBookingForDetail(id);
-            return View(model);
-        }
+        //public IActionResult Edit(int id)
+        //{
+        //    var model = context.GetBookingForDetail(id);
+        //    return View(model);
+        //}
 
-        [HttpPost]
-        public IActionResult Edit(Booking booking)
-        {
-            context.EditBooking(booking);
-            return RedirectToAction(nameof(BookingsController.Index));
-        }
+        //[HttpPost]
+        //public IActionResult Edit(Booking booking)
+        //{
+        //    context.EditBooking(booking);
+        //    return RedirectToAction(nameof(BookingsController.Index));
+        //}
 
-        [HttpGet]
-        public IActionResult Detail(int id)
-        {
-            var model = context.GetBookingForDetail(id);
-            return View(model);
-        }
+        //[HttpGet]
+        //public IActionResult Detail(int id)
+        //{
+        //    var model = context.GetBookingForDetail(id);
+        //    return View(model);
+        //}
     }
 }

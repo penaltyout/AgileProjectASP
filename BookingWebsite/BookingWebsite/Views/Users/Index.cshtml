@@ -1,0 +1,17 @@
+﻿@using BookingWebsite.Models.Entities
+@model User[]
+<!DOCTYPE html>
+<html>
+<head>
+    <title> </title>
+</head>
+<body>
+    @foreach (var user in Model)
+    {
+        <h3>@user.FirstName</h3>
+        <h3>@user.LastName</h3>
+        <h3>@user.City</h3>
+
+    }
+</body>
+</html>

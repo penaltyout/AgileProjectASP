@@ -10,40 +10,71 @@ namespace BookingWebsite.Controllers
 {
     public class RoomsController : Controller
     {
-        TempDatabaseContext context;
+        HotelASPContext context;
 
-        public RoomsController(TempDatabaseContext context)
+        public RoomsController(HotelASPContext context)
         {
             this.context = context;
         }
 
+        // GET: /<controller>/
         public IActionResult Index()
         {
-            var models = context.GetRoomsForIndex();
+            var models = context.GetRoomsIndexVMsForIndex();
             return View(models);
         }
 
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var model = context.GetRoomsDetailsVMForDetails(id);
+            return View(model);
+        }
+
+        // [Authorize(Roles = "Superadmin, Admin")]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        // [Authorize(Roles = "Superadmin, Admin")]
         [HttpPost]
         public IActionResult Create(RoomsCreateVM room)
         {
             if (!ModelState.IsValid)
                 return View();
 
-            context.AddRoom(room);
+            context.CreateRoom(room);
             return RedirectToAction(nameof(RoomsController.Index));
         }
 
+        // [Authorize(Roles = "Superadmin, Admin")]
         [HttpGet]
-        public IActionResult Detail(int id)
+        public IActionResult Edit()
         {
-            var model = context.GetRoomForDetail(id);
-            return View(model);
+            return View();
+        }
+
+        // [Authorize(Roles = "Superadmin, Admin")]
+        [HttpPost]
+        public IActionResult Edit(RoomsEditVM room)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            context.EditRoom(room);
+            return RedirectToAction(nameof(RoomsController.Index));
+        }
+
+        // [Authorize(Roles = "Superadmin, Admin")]
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            context.DeleteRoom(id);
+            return RedirectToAction(nameof(RoomsController.Index));
         }
     }
 }

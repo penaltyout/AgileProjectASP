@@ -1,0 +1,25 @@
+﻿@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@using BookingWebsite.Models
+@model UsersEditVM
+
+<form asp-controller="users" asp-action="edit">
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" />
+    <span style="color: red" asp-validation-for="FirstName"></span> <br />
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" />
+    <span style="color: red" asp-validation-for="LastName"></span> <br />
+    <label asp-for="AddressLine1"></label>
+    <input asp-for="AddressLine1" />
+    <span style="color: red" asp-validation-for="AddressLine1"></span> <br />
+    <label asp-for="AddressLine2"></label>
+    <input asp-for="AddressLine2" />
+    <span style="color: red" asp-validation-for="AddressLine2"></span> <br />
+    <label asp-for="ZipCode"></label>
+    <input asp-for="ZipCode" />
+    <span style="color: red" asp-validation-for="ZipCode"></span> <br />
+    <label asp-for="City"></label>
+    <input asp-for="City" />
+    <span style="color: red" asp-validation-for="City"></span> <br />
+    <input type="submit" value="Change" />
+</form>

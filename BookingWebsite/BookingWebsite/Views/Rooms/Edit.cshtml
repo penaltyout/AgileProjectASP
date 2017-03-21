@@ -1,8 +1,7 @@
-﻿@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
-@using BookingWebsite.Models;
-@model RoomsCreateVM
-<h1>Create a room</h1>
-<form asp-controller="rooms" asp-action="create">
+﻿@using BookingWebsite.Models;
+@model RoomsEditVM
+<h1>Edit a room</h1>
+<form asp-controller="rooms" asp-action="edit">
     <label asp-for="Name"></label>
     <input asp-for="Name" />
     <span style="color:red" asp-validation-for="Name"></span> <br />
