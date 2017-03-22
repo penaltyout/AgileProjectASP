@@ -1,10 +1,13 @@
-﻿@using BookingWebsite.Models
-@model RoomsDetailsVM
+﻿@model RoomsDetailsVM
 <h1>@Model.Name</h1>
 <ul>
     <li>@Model.Size</li>
     <li>@Model.Price</li>
     <li>@Model.Description</li>
 </ul>
+@foreach(String url in Model.Images)
+{
+    <img src="~/Images/Rooms/@Model.Id/@url" /><br />
+}
 <p><h4><a href="~/Rooms/Index">Back to room list</a></h4></p>
 <p><h4><a href="~/Home/Index">Back to main page</a></h4></p>

@@ -5,16 +5,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookingWebsite.Models.Entities;
 using BookingWebsite.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 
 namespace BookingWebsite.Controllers
 {
     public class RoomsController : Controller
     {
         HotelASPContext context;
+        IHostingEnvironment env;
 
-        public RoomsController(HotelASPContext context)
+        public RoomsController(HotelASPContext context, IHostingEnvironment env)
         {
             this.context = context;
+            this.env = env;
         }
 
         // GET: /<controller>/
@@ -27,18 +31,18 @@ namespace BookingWebsite.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var model = context.GetRoomsDetailsVMForDetails(id);
+            var model = context.GetRoomsDetailsVMForDetails(id, env);
             return View(model);
         }
 
-        // [Authorize(Roles = "Superadmin, Admin")]
+        [Authorize(Roles = "Superadmin, Admin, Customer")]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        // [Authorize(Roles = "Superadmin, Admin")]
+        [Authorize(Roles = "Superadmin, Admin, Customer")]
         [HttpPost]
         public IActionResult Create(RoomsCreateVM room)
         {
@@ -49,25 +53,26 @@ namespace BookingWebsite.Controllers
             return RedirectToAction(nameof(RoomsController.Index));
         }
 
-        // [Authorize(Roles = "Superadmin, Admin")]
+        [Authorize(Roles = "Superadmin, Admin, Customer")]
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            var model = context.GetRoomForEditById(id);
+            return View(model);
         }
 
-        // [Authorize(Roles = "Superadmin, Admin")]
+        [Authorize(Roles = "Superadmin, Admin, Customer")]
         [HttpPost]
-        public IActionResult Edit(RoomsEditVM room)
+        public IActionResult Update(RoomsEditVM room)
         {
             if (!ModelState.IsValid)
-                return View();
+                return RedirectToAction(nameof(RoomsController.Edit));
 
-            context.EditRoom(room);
+            context.UpdateRoom(room);
             return RedirectToAction(nameof(RoomsController.Index));
         }
 
-        // [Authorize(Roles = "Superadmin, Admin")]
+        [Authorize(Roles = "Superadmin, Admin, Customer")]
         public IActionResult Delete(int id)
         {
             if (!ModelState.IsValid)

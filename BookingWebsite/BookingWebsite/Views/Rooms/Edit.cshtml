@@ -1,7 +1,7 @@
-﻿@using BookingWebsite.Models;
-@model RoomsEditVM
+﻿@model RoomsEditVM
 <h1>Edit a room</h1>
-<form asp-controller="rooms" asp-action="edit">
+<form asp-controller="rooms" asp-action="update">
+    <input asp-for="Id" />
     <label asp-for="Name"></label>
     <input asp-for="Name" />
     <span style="color:red" asp-validation-for="Name"></span> <br />

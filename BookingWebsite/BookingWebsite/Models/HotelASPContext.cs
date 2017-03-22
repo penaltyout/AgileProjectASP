@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -84,10 +85,10 @@ namespace BookingWebsite.Models.Entities
             }).ToArray();
         }
 
-        public RoomsDetailsVM GetRoomsDetailsVMForDetails(int id)
+        public RoomsDetailsVM GetRoomsDetailsVMForDetails(int id, IHostingEnvironment env)
         {
             var room = this.Room.Single(i => i.Id == id);
-            return new RoomsDetailsVM
+            return new RoomsDetailsVM(env)
             {
                 Id = room.Id,
                 Name = room.Name,
@@ -95,7 +96,21 @@ namespace BookingWebsite.Models.Entities
                 Description = room.Description,
                 Price = room.Price,
                 Size = room.Size
+                
+            };
+        }
 
+        public RoomsEditVM GetRoomForEditById(int id)
+        {
+            Room roomToSend = Room.Single(i => i.Id == id);
+            return new RoomsEditVM
+            {
+                Id = roomToSend.Id,
+                Name = roomToSend.Name,
+                Number = roomToSend.Number,
+                Description = roomToSend.Description,
+                Price = roomToSend.Price,
+                Size = roomToSend.Size
             };
         }
 
@@ -115,15 +130,15 @@ namespace BookingWebsite.Models.Entities
             SaveChanges();
         }
 
-        public void EditRoom(RoomsEditVM room)
+        public void UpdateRoom(RoomsEditVM room)
         {
-            var roomToAdd = this.Room.Single(i => i.Id == room.Id);
+            Room roomToUpdate = this.Room.Single(i => i.Id == room.Id);
 
-            roomToAdd.Name = room.Name;
-            roomToAdd.Number = room.Number;
-            roomToAdd.Description = room.Description;
-            roomToAdd.Price = room.Price;
-            roomToAdd.Size = room.Size;
+            if(room.Name != null) roomToUpdate.Name = room.Name;
+            roomToUpdate.Number = room.Number;
+            if (room.Description != null) roomToUpdate.Description = room.Description;
+            if (room.Price != null) roomToUpdate.Price = room.Price;
+            if (room.Size != null) roomToUpdate.Size = room.Size;
 
             SaveChanges();
         }
