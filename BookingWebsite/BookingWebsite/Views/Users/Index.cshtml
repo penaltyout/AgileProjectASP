@@ -1,17 +1,18 @@
 ﻿@using BookingWebsite.Models.Entities
 @model User[]
+
 <!DOCTYPE html>
 <html>
-<head>
-    <title> </title>
-</head>
-<body>
-    @foreach (var user in Model)
-    {
-        <h3>@user.FirstName</h3>
-        <h3>@user.LastName</h3>
-        <h3>@user.City</h3>
-
-    }
-</body>
+    <head>
+        <title>User list</title>
+    </head>
+    <body>
+        <h3>List of users</h3>
+        @foreach (var user in Model)
+        {
+            <ul>
+                <li><h4><a asp-controller="users" asp-action="detail" asp-route-id="@user">@user.FirstName @user.LastName</a></h4></li>
+            </ul>
+        }
+    </body>
 </html>

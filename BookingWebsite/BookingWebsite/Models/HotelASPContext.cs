@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -24,8 +25,6 @@ namespace BookingWebsite.Models.Entities
                 AspNetUserId = model.AspNetUserId,
                 City = model.City,
                 ZipCode = model.ZipCode,
-
-
             };
             User.Add(userToAdd);
 
@@ -37,12 +36,12 @@ namespace BookingWebsite.Models.Entities
             return User.ToArray();
         }
 
-        public UsersDetailsVM FindUserById(string id)
+        public UsersDetailVM FindUserById(string id)
         {
             var user = User.Single(i => i.AspNetUserId == id);
-
-
-            var userForDetails = new UsersDetailsVM
+            
+            
+            var userForDetails = new UsersDetailVM
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
@@ -50,8 +49,7 @@ namespace BookingWebsite.Models.Entities
                 AddressLine2 = user.AddressLine2,
                 City = user.City,
                 ZipCode = user.ZipCode
-            };
-
+           };
             return userForDetails;
         }
 
@@ -66,43 +64,12 @@ namespace BookingWebsite.Models.Entities
             if (model.ZipCode != null) user.ZipCode = model.ZipCode;
 
             SaveChanges();
-
-
         }
 
-        public RoomsIndexVM[] GetRoomsIndexVMsForIndex()
-        {
-            return this.Room.Select(i => new RoomsIndexVM
-            {
-                Id = i.Id,
-                Name = i.Name,
-                Number = i.Number,
-                Description = i.Description,
-                Price = i.Price,
-                Size = i.Size
-
-            }).ToArray();
-        }
-
-        public RoomsDetailsVM GetRoomsDetailsVMForDetails(int id)
-        {
-            var room = this.Room.Single(i => i.Id == id);
-            return new RoomsDetailsVM
-            {
-                Id = room.Id,
-                Name = room.Name,
-                Number = room.Number,
-                Description = room.Description,
-                Price = room.Price,
-                Size = room.Size
-
-            };
-        }
-
-        public void CreateRoom(RoomsCreateVM room)
+        public void AddRoom(RoomsCreateVM room)
         {
             var roomToAdd = new Room
-            {
+            { 
                 Id = room.Id,
                 Name = room.Name,
                 Number = room.Number,
@@ -117,13 +84,13 @@ namespace BookingWebsite.Models.Entities
 
         public void EditRoom(RoomsEditVM room)
         {
-            var roomToAdd = this.Room.Single(i => i.Id == room.Id);
+            var roomToEdit = this.Room.Single(i => i.Id == room.Id);
 
-            roomToAdd.Name = room.Name;
-            roomToAdd.Number = room.Number;
-            roomToAdd.Description = room.Description;
-            roomToAdd.Price = room.Price;
-            roomToAdd.Size = room.Size;
+            if (room.Name != null) roomToEdit.Name = room.Name;
+            if (room.Number != null) roomToEdit.Number = room.Number;
+            if (room.Description != null) roomToEdit.Description = room.Description;
+            if (room.Price != null) roomToEdit.Price = room.Price;
+            if (room.Size != null) roomToEdit.Size = room.Size;
 
             SaveChanges();
         }
@@ -134,6 +101,44 @@ namespace BookingWebsite.Models.Entities
 
             Room.Remove(roomToDelete);
             SaveChanges();
+        }
+
+        public Room[] GetRoomsForIndex()
+        {
+            return this.Room.ToArray();
+        }
+
+        public Room GetRoomForDetail(int id)
+        {
+            return this.Room.Where(o => o.Id == id).Single();
+        }
+
+        public RoomsIndexVM[] GetRoomsIndexVMForIndex()
+        {
+            return this.Room.Select(i => new RoomsIndexVM
+            {
+                Id = i.Id,
+                Name = i.Name,
+                Number = i.Number,
+                Description = i.Description,
+                Price = i.Price,
+                Size = i.Size
+
+            }).ToArray();
+        }
+
+        public RoomsDetailVM GetRoomsDetailVMForDetail(int id, IHostingEnvironment env)
+        {
+            var room = this.Room.Single(i => i.Id == id);
+            return new RoomsDetailVM (env)
+            {
+                Id = room.Id,
+                Name = room.Name,
+                Number = room.Number,
+                Description = room.Description,
+                Price = room.Price,
+                Size = room.Size
+            };
         }
 
         //public void AddCustomer(CustomersCreateVM customer)
