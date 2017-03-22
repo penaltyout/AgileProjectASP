@@ -1,18 +1,13 @@
-﻿@using BookingWebsite.Models
-@model BookingsCreateVM
-@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Book a room</title>
-        <script src="~/js/JavaScript.js"></script>
-    </head>
-    <body>
+﻿@model BookingsCreateVM
         <h1>Make a booking</h1>
-        <form asp-controller="bookings" asp-action="create">
-            @*<label asp-for="BookingId"></label>
-                <input asp-for="BookingId">
-                <span style="color:red" asp-validation-for="BookingId"></span>*@
+        <ul>
+            @*<li>Model Id: @Model.Id</li>*@
+            <li>Model Room Id: @Model.RoomId</li>
+            <li>User Id: @Model.UserId</li>
+            <li>Start Date: @Model.StartDate</li>
+            <li>End Date: @Model.EndDate</li>
+        </ul>
+        @*<form asp-controller="bookings" asp-action="create">
             <label asp-for="CustomerId"></label>
             <input asp-for="CustomerId">
             <span style="color:red" asp-validation-for="CustomerId"></span> <br />
@@ -30,7 +25,5 @@
             <span style="color:red" asp-validation-for="Statuscode"></span> <br />
 
             <input type="submit" value="Submit" onclick="RegistrationMessage()">
-        </form>
+        </form>*@
         <p><h4><a href="~/Home/Index">Back to main page</a></h4></p>
-    </body>
-</html>

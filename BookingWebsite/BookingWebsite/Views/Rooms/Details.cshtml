@@ -9,5 +9,21 @@
 {
     <img src="~/Images/Rooms/@Model.Id/@url" /><br />
 }
+@if (User.Identity.IsAuthenticated)
+{
+<form asp-controller="bookings" asp-action="create">
+    <input type="hidden" name="RoomId" value="@Model.Id"/>
+    <label>Start date</label>
+    <input type="datetime" name="StartDate" />
+    <br />
+    <label>End date</label>
+    <input type="datetime" name="EndDate"/>
+    <br />
+    <input type="submit" value="Book" />
+    <br />
+</form>
+}else{
+    <p>Please log in to book a room</p>
+}
 <p><h4><a href="~/Rooms/Index">Back to room list</a></h4></p>
 <p><h4><a href="~/Home/Index">Back to main page</a></h4></p>

@@ -5,28 +5,44 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookingWebsite.Models.Entities;
 using BookingWebsite.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookingWebsite.Controllers
 {
     public class BookingsController : Controller
     {
+        UserManager<IdentityUser> userManager;
         HotelASPContext context;
-
-        public BookingsController(HotelASPContext context)
+        
+        public BookingsController(HotelASPContext context, UserManager<IdentityUser> userManager)
         {
             this.context = context;
+            this.userManager = userManager;
         }
 
-        //public IActionResult Index()
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View();
-        //    else
-        //    {
-        //        var models = context.GetBookingsForIndex();
+        public IActionResult Index()
+        {
+            var models = context.GetBookingsIndexVMForIndex();
+            return View(models);
+        }
 
-        //        return View(models);
-        //    }
+        [Authorize]
+        [HttpPost]
+        public IActionResult Create(BookingsCreateVM booking)
+        {
+            booking.UserId = context.GetUserIdFromAspNetUserId(userManager.GetUserId(HttpContext.User));
+            context.CreateBooking(booking);
+            return View(booking);
+        }
+
+        //[Authorize]
+        //public IActionResult BookingSuccessfull(int id)
+        //{
+        //    BookingsSuccessfullVM booking = context.GetBookingsSuccessfullVMForBookingsSuccessfull(id);
+
+        //    return View(booking);
         //}
 
         //[HttpGet]

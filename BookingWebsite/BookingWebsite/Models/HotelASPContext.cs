@@ -33,6 +33,52 @@ namespace BookingWebsite.Models.Entities
             SaveChanges();
         }
 
+        public BookingsIndexVM[] GetBookingsIndexVMForIndex()
+        {
+            return Booking.Select(i => new BookingsIndexVM
+            {
+                Id = i.Id,
+                RoomId = i.RoomId,
+                UserId = i.UserId,
+                StartDate = i.StartDate,
+                EndDate = i.EndDate,
+                Statuscode = i.Statuscode,
+                CustomerName = User.Where(u => u.Id == i.UserId).Select(u => u.FirstName + " " + u.LastName).Single(),
+                RoomName = Room.Where(r => r.Id == i.RoomId).Select(r => r.Name).Single()
+            }).ToArray();
+        }
+
+        //public BookingsSuccessfullVM GetBookingsSuccessfullVMForBookingsSuccessfull (int id)
+        //{
+        //    Booking booking = Booking.Single(b => b.Id == id);
+        //    return new BookingsSuccessfullVM
+        //    {
+        //        Id = booking.Id,
+        //        RoomId = booking.RoomId,
+        //        UserId = booking.UserId,
+        //        CustomerName = User.Where(u => u.Id == booking.UserId).Select(u => u.FirstName + " " + u.LastName).Single(),
+        //        RoomName = Room.Where(r => r.Id == booking.RoomId).Select(r => r.Name).Single(),
+        //        StartDate=booking.StartDate,
+        //        EndDate = booking.EndDate
+        //    };
+        //}
+
+        public void CreateBooking(BookingsCreateVM booking)
+        {
+            var bookingToAdd = new Booking
+            {
+                RoomId = booking.RoomId,
+                UserId = booking.UserId,
+                StartDate = booking.StartDate,
+                EndDate = booking.EndDate,
+                //Statuscode = booking.Statuscode
+            };
+
+            Booking.Add(bookingToAdd);
+            SaveChanges();
+        }
+
+
         public User[] GetUsersForIndex()
         {
             return User.ToArray();
@@ -54,6 +100,11 @@ namespace BookingWebsite.Models.Entities
             };
 
             return userForDetails;
+        }
+
+        public int GetUserIdFromAspNetUserId(string aspNetUserId)
+        {
+            return User.Where(i => i.AspNetUserId == aspNetUserId).Select(i => i.Id).Single();
         }
 
         public void FindUserForEditByID(string id, UsersEditVM model)
@@ -118,7 +169,6 @@ namespace BookingWebsite.Models.Entities
         {
             var roomToAdd = new Room
             {
-                Id = room.Id,
                 Name = room.Name,
                 Number = room.Number,
                 Description = room.Description,

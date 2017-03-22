@@ -1,0 +1,12 @@
+﻿@model BookingsSuccessfullVM
+<h1>Booking successfull!</h1>
+    <h2>Thank you for choosing AspNetCore Hotel!</h2>
+    <hr />    
+    <h3>Booking details:</h3>
+    <ul>
+        <li><strong>Booking Id: @Model.Id</strong></li>
+        <li>@Model.CustomerName</li>
+        <li><a asp-controller="rooms" asp-action="details" asp-route-id="@Model.RoomId">Room: @Model.RoomName</a></li>
+        <li>Start date: @Model.StartDate</li>
+        <li>End date: @Model.EndDate</li>
+    </ul>
