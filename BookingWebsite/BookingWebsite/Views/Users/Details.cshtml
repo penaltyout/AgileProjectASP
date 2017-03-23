@@ -1,9 +1,10 @@
 ﻿@model UsersDetailsVM
-
-<h3>FirstName @Model.FirstName</h3>
-<h3>LastName @Model.LastName</h3>
-<h3>AddressLine1 @Model.AddressLine1</h3>
-<h3>AddressLine2 @Model.AddressLine2</h3>
-<h3>City @Model.City</h3>
-<h3>ZipCode @Model.ZipCode</h3>
-<a href="/users/edit">Edit</a>
+<ul>
+   <li> @Model.FirstName</li>
+    <li> @Model.LastName</li>
+    <li> @Model.AddressLine1</li>
+    <li> @Model.AddressLine2</li>
+    <li> @Model.City</li>
+    <li> @Model.ZipCode</li>
+    <li> <a href="/users/edit">Edit</a> </li>
+</ul>

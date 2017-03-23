@@ -1,29 +1,33 @@
 ﻿@model RoomsDetailsVM
 <h1>@Model.Name</h1>
 <ul>
-    <li>@Model.Size</li>
-    <li>@Model.Price</li>
+    <li>Size @Model.Size</li>
+    <li>Price @Model.Price</li>
     <li>@Model.Description</li>
 </ul>
-@foreach(String url in Model.Images)
+@foreach (String url in Model.Images)
 {
-    <img src="~/Images/Rooms/@Model.Id/@url" /><br />
+    <div class="box">
+        <img src="~/Images/Rooms/@Model.Id/@url" /><br />
+    </div>
 }
 @if (User.Identity.IsAuthenticated)
 {
 <form asp-controller="bookings" asp-action="create">
     <input type="hidden" name="RoomId" value="@Model.Id"/>
     <label>Start date</label>
-    <input type="datetime" name="StartDate" />
+    <input type="datetime" name="StartDate" placeholder="Year/Month/Day" />
     <br />
     <label>End date</label>
-    <input type="datetime" name="EndDate"/>
+    <input type="datetime" name="EndDate" placeholder="Year/Month/Day"/>
     <br />
     <input type="submit" value="Book" />
     <br />
 </form>
-}else{
-    <p>Please log in to book a room</p>
+}
+else
+{
+    <h1>Please log in to book a room</h1>
 }
 <p><h4><a href="~/Rooms/Index">Back to room list</a></h4></p>
 <p><h4><a href="~/Home/Index">Back to main page</a></h4></p>

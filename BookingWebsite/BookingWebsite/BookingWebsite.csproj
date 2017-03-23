@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\CSS\StyleSheet.css" />
     <Content Include="wwwroot\Images\Rooms\6\Deep Purple8.jpg" />
     <Content Include="wwwroot\Images\Rooms\7\Deep Purple5.jpg" />
     <Content Include="wwwroot\js\JavaScript.js" />

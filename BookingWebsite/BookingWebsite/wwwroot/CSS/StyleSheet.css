@@ -1,0 +1,49 @@
+﻿html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background-color: black;
+    color: white;
+    
+}
+
+input {
+    color: black;
+}
+
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color:black;
+    height: 35px;
+    background-color: #f5f5f5;
+}
+
+.footerMid{
+    position:absolute;
+    font-size:25px;
+}
+.footerRight {
+    position: relative;
+    font-size: 25px;
+    text-align: right;
+}
+div.box {
+    width: 50%;
+    
+    margin: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid darkviolet;
+    opacity: 1;
+}
+
+img{
+    width: 100%;
+}
+

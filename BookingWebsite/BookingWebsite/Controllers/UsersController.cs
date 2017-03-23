@@ -123,12 +123,14 @@ namespace BookingWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> LogIn(UsersLogInVM model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
 
             var result = await signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
             if (!result.Succeeded)
             {
+                ModelState.AddModelError(nameof(UsersLogInVM.Username), "Username or password was incorrect");
 
                 return View(model);
             }
