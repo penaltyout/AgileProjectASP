@@ -1,0 +1,16 @@
+﻿@*This view is ONLY used for displaying bookings by the current logged in user. Using it without caution may lead to SYSTEM FAILURE*@
+@model BookingsDetailsVM[]
+    <h1>Your bookings</h1>
+    @foreach (var item in @Model)
+    {
+        <ul>
+            <li><h1>Booking no. @item.Id</h1></li>
+            <li>Room nr. @item.RoomNumber</li>
+            <li>Check in: @item.StartDate</li>
+            <li>Check out: @item.EndDate</li>
+            <li>Status: @item.Statuscode</li>
+            <li><a href="~/Bookings/Edit/@item.Id">Update information</a></li>
+</ul>
+    }
+    <p><h4><a href="~/Bookings/Index">Back to booking list</a></h4></p>
+    <p><h4><a href="~/Home/Index">Back to main page</a></h4></p>

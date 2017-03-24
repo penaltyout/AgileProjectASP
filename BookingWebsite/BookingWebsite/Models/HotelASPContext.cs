@@ -14,6 +14,8 @@ namespace BookingWebsite.Models.Entities
             : base(options)
         {
         }
+
+        #region User functions
         public void AddUser(UsersRegisterVM model)
         {
             var userToAdd = new User
@@ -33,6 +35,51 @@ namespace BookingWebsite.Models.Entities
             SaveChanges();
         }
 
+        public User[] GetUsersForIndex()
+        {
+            return User.ToArray();
+        }
+
+        public UsersDetailsVM FindUserById(string id)
+        {
+            var user = User.Single(i => i.AspNetUserId == id);
+
+
+            var userForDetails = new UsersDetailsVM
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                AddressLine1 = user.AddressLine1,
+                AddressLine2 = user.AddressLine2,
+                City = user.City,
+                ZipCode = user.ZipCode
+            };
+
+            return userForDetails;
+        }
+
+        public int GetUserIdFromAspNetUserId(string aspNetUserId)
+        {
+            return User.Where(i => i.AspNetUserId == aspNetUserId).Select(i => i.Id).Single();
+        }
+
+        public void FindUserForEditByID(string id, UsersEditVM model)
+        {
+            var user = User.Single(i => i.AspNetUserId == id);
+            if (model.FirstName != null) user.FirstName = model.FirstName;
+            if (model.LastName != null) user.LastName = model.LastName;
+            if (model.AddressLine1 != null) user.AddressLine1 = model.AddressLine1;
+            if (model.AddressLine2 != null) user.AddressLine2 = model.AddressLine2;
+            if (model.City != null) user.City = model.City;
+            if (model.ZipCode != null) user.ZipCode = model.ZipCode;
+
+            SaveChanges();
+
+
+        }
+        #endregion
+
+        #region Bookings functions
         public BookingsIndexVM[] GetBookingsIndexVMForIndex()
         {
             return Booking.Select(i => new BookingsIndexVM
@@ -78,50 +125,35 @@ namespace BookingWebsite.Models.Entities
             SaveChanges();
         }
 
+        //public BookingsEditVM GetBookingForEdit(int id)
+        //{
+        //    Booking bookingToConvert = Booking.Single(i => i.Id == id);
+        //    return new BookingsEditVM
+        //    {
+        //        UserId = bookingToConvert.UserId,
+        //        RoomId = bookingToConvert.RoomId,
+        //        StartDate = bookingToConvert.StartDate,
+        //        Statuscode = bookingToConvert.Statuscode
+        //    };
+        //}
 
-        public User[] GetUsersForIndex()
+        public BookingsDetailsVM[] GetBookingsDetailsVMForUserBookingsDetails(int id)
         {
-            return User.ToArray();
-        }
-
-        public UsersDetailsVM FindUserById(string id)
-        {
-            var user = User.Single(i => i.AspNetUserId == id);
-
-
-            var userForDetails = new UsersDetailsVM
+            return Booking.Where(b => b.UserId == id).Select(b => new BookingsDetailsVM
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                AddressLine1 = user.AddressLine1,
-                AddressLine2 = user.AddressLine2,
-                City = user.City,
-                ZipCode = user.ZipCode
-            };
-
-            return userForDetails;
+                Id = b.Id,
+                RoomId = b.RoomId,
+                UserId = b.UserId,
+                StartDate = b.StartDate,
+                EndDate = b.EndDate,
+                CustomerName = User.Where(u => u.Id == b.UserId).Select(u => u.FirstName + " " + u.LastName).Single(),
+                RoomNumber = Room.Where(r => r.Id == b.RoomId).Select(r => r.Number).Single()
+                //Statuscode = booking.Statuscode
+            }).ToArray();
         }
+#endregion
 
-        public int GetUserIdFromAspNetUserId(string aspNetUserId)
-        {
-            return User.Where(i => i.AspNetUserId == aspNetUserId).Select(i => i.Id).Single();
-        }
-
-        public void FindUserForEditByID(string id, UsersEditVM model)
-        {
-            var user = User.Single(i => i.AspNetUserId == id);
-            if (model.FirstName != null) user.FirstName = model.FirstName;
-            if (model.LastName != null) user.LastName = model.LastName;
-            if (model.AddressLine1 != null) user.AddressLine1 = model.AddressLine1;
-            if (model.AddressLine2 != null) user.AddressLine2 = model.AddressLine2;
-            if (model.City != null) user.City = model.City;
-            if (model.ZipCode != null) user.ZipCode = model.ZipCode;
-
-            SaveChanges();
-
-
-        }
-
+        #region Rooms functions
         public RoomsIndexVM[] GetRoomsIndexVMsForIndex()
         {
             return this.Room.Select(i => new RoomsIndexVM
@@ -200,7 +232,9 @@ namespace BookingWebsite.Models.Entities
             Room.Remove(roomToDelete);
             SaveChanges();
         }
+        #endregion
 
+        #region Customer functions
         //public void AddCustomer(CustomersCreateVM customer)
         //{
 
@@ -260,5 +294,6 @@ namespace BookingWebsite.Models.Entities
         //    customerToFind.Telephone = customer.Telephone;
         //    SaveChanges();
         //}
+        #endregion
     }
 }

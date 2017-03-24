@@ -37,6 +37,17 @@ namespace BookingWebsite.Controllers
             return View(booking);
         }
 
+        [Authorize]
+        [HttpGet]
+        public IActionResult UserBookingsDetails(int id)
+        {
+            int bookingUserId = context.GetUserIdFromAspNetUserId(userManager.GetUserId(HttpContext.User));
+
+            var model = context.GetBookingsDetailsVMForUserBookingsDetails(bookingUserId);
+            return View(model);
+
+        }
+
         //[Authorize]
         //public IActionResult BookingSuccessfull(int id)
         //{
@@ -72,13 +83,6 @@ namespace BookingWebsite.Controllers
         //{
         //    context.EditBooking(booking);
         //    return RedirectToAction(nameof(BookingsController.Index));
-        //}
-
-        //[HttpGet]
-        //public IActionResult Detail(int id)
-        //{
-        //    var model = context.GetBookingForDetail(id);
-        //    return View(model);
         //}
     }
 }
