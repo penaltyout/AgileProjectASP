@@ -2,23 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookingWebsite.Models;
+using BookingWebsite.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using BookingWebsite.Models.Entities;
-using BookingWebsite.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.FileProviders;
 
 namespace BookingWebsite.Controllers
 {
     public class RoomsController : Controller
     {
-        private IHostingEnvironment env;
-
         HotelASPContext context;
-
+        IHostingEnvironment env;
+        
         public RoomsController(HotelASPContext context, IHostingEnvironment env)
         {
             this.context = context;
@@ -31,60 +27,51 @@ namespace BookingWebsite.Controllers
             return View(models);
         }
 
-        //[HttpGet]
-        //public IActionResult Detail(int id)
-        //{
-        //    var model = context.GetRoomsDetailVMForDetail(id);
-        //    return View(model);
-        //}
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            var model = context.GetRoomsDetailVMForDetail(id, env);
+            return View(model);
+        }
 
+        [Authorize(Roles = "Superadmin, Admin, Customer")]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Superadmin, Admin, Customer")]
         [HttpPost]
         public IActionResult Create(RoomsCreateVM room)
         {
             if (!ModelState.IsValid)
                 return View();
 
-            context.AddRoom(room);
+            context.CreateRoom(room);
             return RedirectToAction(nameof(RoomsController.Index));
         }
 
-        [HttpGet]
-        public IActionResult Detail(int id)
-        {
-            Room room = context.GetRoomForDetail(id);
-            RoomsDetailVM model = new RoomsDetailVM(env)
-            {
-                Id = room.Id,
-                Name = room.Name,
-                Number = room.Number,
-                Price = room.Price,
-                Size = room.Size,
-            };
-            return View(model);
-        }
-
+        [Authorize(Roles = "Superadmin, Admin, Customer")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            return View();
+            var model = context.GetRoomForEditById(id);
+            return View(model);
         }
 
+        [Authorize(Roles = "Superadmin, Admin, Customer")]
         [HttpPost]
-        public IActionResult Edit(RoomsEditVM room)
+        public IActionResult Update(RoomsEditVM room)
         {
             if (!ModelState.IsValid)
-                return View();
+                return RedirectToAction(nameof(RoomsController.Edit));
 
-            context.EditRoom(room);
+            context.UpdateRoom(room);
             return RedirectToAction(nameof(RoomsController.Index));
         }
 
+        [Authorize(Roles = "Superadmin, Admin, Customer")]
         public IActionResult Delete(int id)
         {
             if (!ModelState.IsValid)

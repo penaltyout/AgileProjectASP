@@ -1,19 +1,15 @@
-﻿@using BookingWebsite.Models.Entities;
-@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
-@model Booking[]
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Booking list</title>
-    </head>
-    <body>
-        <h1>List of customer bookings</h1>
-        @foreach (var item in @Model)
-        {
-            <ul>
-                <li><a asp-controller="Bookings" asp-action="Detail" asp-route-id="@item.BookingId">Booking no.@item.BookingId  (by customer id @item.Customer_Id / room id @item.Room_Id)</a></li>
-            </ul>
-        }
-        <p><h4><a href="~/Home/Index">Back to main page</a></h4></p>
-    </body>
-</html>
+﻿@model BookingsIndexVM[]
+
+<div class="title">List of all bookings</div>
+<div class="subtitle">Here you can see all bookings with detailed information.</div><br />
+@foreach (var item in @Model)
+{
+    <ul>
+        <li>Id: @item.Id</li>
+        <li><a asp-controller="users" asp-action="detail" asp-route-id="@item.UserId">Customer name: @item.CustomerName</a></li>
+        <li><a asp-controller="rooms" asp-action="detail" asp-route-id="@item.RoomId">Room name: @item.RoomName</a></li>
+        <li>Start date: @item.StartDate</li>
+        <li>End date: @item.EndDate</li>
+    </ul>
+    <hr />
+}

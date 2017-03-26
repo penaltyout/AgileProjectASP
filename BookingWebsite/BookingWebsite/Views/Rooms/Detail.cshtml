@@ -1,17 +1,64 @@
 ﻿@model RoomsDetailVM
 
-<h1>@Model.Name</h1>
-<ul>
-    <li>Name: @Model.Name</li>
-    <li>Room No. @Model.Number</li>
-    <li>Room Size: @Model.Size</li>
-    <li>Price: @Model.Price</li>
-    <li>Description: @Model.Description</li>
-</ul>
+<div class="title">@Model.Name</div>
+<div class="subtitle">Here you can see the more information aout the room.</div><br />
+
+<div class="list">
+    <ul>
+        <li>For @Model.Size person(s)</li>
+        <li>@Model.Price SEK for night (incl. tax)</li>
+        <li>@Model.Description</li>
+    </ul>
+</div>
+
 @foreach (String url in Model.Images)
 {
-    <img src="~/Images/Rooms/@Model.Id/@url" /><br />
+    <div class="box">
+        <img src="~/Images/Rooms/@Model.Id/@url" /><br />
+    </div>
 }
-<p><h4><a href="~/rooms/edit/@Model.Id">Edit</a></h4><p>
-<p><h4><a href="~/rooms/delete">Delete</a></h4><p>
-<p><h4><a href="~/rooms/index">Back to room list</a></h4></p>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <form asp-controller="bookings" asp-action="create">
+        <input type="hidden" name="RoomId" value="@Model.Id" />
+        <label>Check In</label>
+        <input type="datetime" name="StartDate" placeholder="Year/Month/Day" />
+        <br />
+        <label>Check Out</label>
+        <input type="datetime" name="EndDate" placeholder="Year/Month/Day" />
+        <br />
+        <input type="submit" value="Book" />
+        <br />
+    </form>
+
+    @*<div class="container">
+        <form asp-controller="bookings" asp-action="create">
+            <input type="hidden" name="RoomId" value="@Model.Id" />
+            <div class="form-group row">
+                <label asp-for="StartDate" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="StartDate" />
+                    <span style="color: red" asp-validation-for="StartDate"></span> <br />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="EndDate" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="EndDate" />
+                    <span style="color: red" asp-validation-for="EndDate"></span> <br />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" value="Book"> Book </button> <button type="reset" class="btn btn-primary" value="cancel"> Reset </button>
+                </div>
+            </div>
+        </form>
+    </div>*@
+}
+
+else
+{
+    <br /><div class="subtitle">Please log in to make a reservation.</div>
+}

@@ -1,21 +1,18 @@
-﻿@using BookingWebsite.Models.Entities;
-@model Booking
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Booking detail</title>
-</head>
-<body>
-    <h1>Details of booking</h1>
-    <h1>Booking no. @Model.BookingId by customer id @Model.Customer_Id</h1>
-    <ul>
-        <li>Room Id: @Model.Room_Id</li>
-        <li>Check in: @Model.StartDate</li>
-        <li>Check out: @Model.EndDate</li>
-        <li>Status: @Model.Statuscode</li>
-    </ul>
-    <p><h4><a href="~/Bookings/Edit/@Model.BookingId">Update information</a></h4><p>
-    <p><h4><a href="~/Bookings/Index">Back to booking list</a></h4></p>
-    <p><h4><a href="~/Home/Index">Back to main page</a></h4></p>
-</body>
-</html>
+﻿@model BookingsDetailVM[]
+
+<div class="title">Your bookings</div>
+<div class="subtitle">Here you can see all your booking(s) that you have made.</div><br />
+
+@foreach (var item in @Model)
+{
+    <div class="list">
+        <ul>
+            <li><h1>Booking no. @item.Id</h1></li>
+            <li>Room nr. @item.RoomNumber</li>
+            <li>Check in: @item.StartDate</li>
+            <li>Check out: @item.EndDate</li>
+            <li>Status: @item.Statuscode</li>
+            <li><a href="~/Bookings/Edit/@item.Id">Change booking</a></li>
+        </ul>
+    </div>
+}

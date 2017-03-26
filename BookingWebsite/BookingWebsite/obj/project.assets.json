@@ -10466,10 +10466,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SEBE\\Desktop\\PROJECT\\AgileProjectMaster\\BookingWebsite\\BookingWebsite\\BookingWebsite.csproj",
+      "projectUniqueName": "C:\\Users\\SEBE\\Source\\Repos\\AgileProjectASP\\BookingWebsite\\BookingWebsite\\BookingWebsite.csproj",
       "projectName": "BookingWebsite",
-      "projectPath": "C:\\Users\\SEBE\\Desktop\\PROJECT\\AgileProjectMaster\\BookingWebsite\\BookingWebsite\\BookingWebsite.csproj",
-      "outputPath": "C:\\Users\\SEBE\\Desktop\\PROJECT\\AgileProjectMaster\\BookingWebsite\\BookingWebsite\\obj\\",
+      "projectPath": "C:\\Users\\SEBE\\Source\\Repos\\AgileProjectASP\\BookingWebsite\\BookingWebsite\\BookingWebsite.csproj",
+      "outputPath": "C:\\Users\\SEBE\\Source\\Repos\\AgileProjectASP\\BookingWebsite\\BookingWebsite\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"

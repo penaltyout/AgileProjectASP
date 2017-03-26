@@ -14,6 +14,7 @@ namespace BookingWebsite.Models.Entities
             : base(options)
         {
         }
+
         public void AddUser(UsersRegisterVM model)
         {
             var userToAdd = new User
@@ -39,8 +40,7 @@ namespace BookingWebsite.Models.Entities
         public UsersDetailVM FindUserById(string id)
         {
             var user = User.Single(i => i.AspNetUserId == id);
-            
-            
+
             var userForDetails = new UsersDetailVM
             {
                 FirstName = user.FirstName,
@@ -49,8 +49,14 @@ namespace BookingWebsite.Models.Entities
                 AddressLine2 = user.AddressLine2,
                 City = user.City,
                 ZipCode = user.ZipCode
-           };
+            };
+
             return userForDetails;
+        }
+
+        public int GetUserIdFromAspNetUserId(string aspNetUserId)
+        {
+            return User.Where(i => i.AspNetUserId == aspNetUserId).Select(i => i.Id).Single();
         }
 
         public void FindUserForEditByID(string id, UsersEditVM model)
@@ -66,51 +72,48 @@ namespace BookingWebsite.Models.Entities
             SaveChanges();
         }
 
-        public void AddRoom(RoomsCreateVM room)
+        public BookingsIndexVM[] GetBookingsIndexVMForIndex()
         {
-            var roomToAdd = new Room
-            { 
-                Id = room.Id,
-                Name = room.Name,
-                Number = room.Number,
-                Description = room.Description,
-                Price = room.Price,
-                Size = room.Size
+            return Booking.Select(i => new BookingsIndexVM
+            {
+                Id = i.Id,
+                RoomId = i.RoomId,
+                UserId = i.UserId,
+                StartDate = i.StartDate,
+                EndDate = i.EndDate,
+                Statuscode = i.Statuscode,
+                CustomerName = User.Where(u => u.Id == i.UserId).Select(u => u.FirstName + " " + u.LastName).Single(),
+                RoomName = Room.Where(r => r.Id == i.RoomId).Select(r => r.Name).Single()
+            }).ToArray();
+        }
+
+        public void CreateBooking(BookingsCreateVM booking)
+        {
+            var bookingToAdd = new Booking
+            {
+                RoomId = booking.RoomId,
+                UserId = booking.UserId,
+                StartDate = booking.StartDate,
+                EndDate = booking.EndDate,
+                //Statuscode = booking.Statuscode
             };
 
-            Room.Add(roomToAdd);
+            Booking.Add(bookingToAdd);
             SaveChanges();
         }
 
-        public void EditRoom(RoomsEditVM room)
+        public BookingsDetailVM[] GetBookingsDetailVMForUserBookingsDetail(int id)
         {
-            var roomToEdit = this.Room.Single(i => i.Id == room.Id);
-
-            if (room.Name != null) roomToEdit.Name = room.Name;
-            if (room.Number != null) roomToEdit.Number = room.Number;
-            if (room.Description != null) roomToEdit.Description = room.Description;
-            if (room.Price != null) roomToEdit.Price = room.Price;
-            if (room.Size != null) roomToEdit.Size = room.Size;
-
-            SaveChanges();
-        }
-
-        public void DeleteRoom(int id)
-        {
-            var roomToDelete = this.Room.Single(i => i.Id == id);
-
-            Room.Remove(roomToDelete);
-            SaveChanges();
-        }
-
-        public Room[] GetRoomsForIndex()
-        {
-            return this.Room.ToArray();
-        }
-
-        public Room GetRoomForDetail(int id)
-        {
-            return this.Room.Where(o => o.Id == id).Single();
+            return Booking.Where(b => b.UserId == id).Select(b => new BookingsDetailVM
+            {
+                Id = b.Id,
+                RoomId = b.RoomId,
+                UserId = b.UserId,
+                StartDate = b.StartDate,
+                EndDate = b.EndDate,
+                CustomerName = User.Where(u => u.Id == b.UserId).Select(u => u.FirstName + " " + u.LastName).Single(),
+                RoomNumber = Room.Where(r => r.Id == b.RoomId).Select(r => r.Number).Single()
+            }).ToArray();
         }
 
         public RoomsIndexVM[] GetRoomsIndexVMForIndex()
@@ -130,7 +133,7 @@ namespace BookingWebsite.Models.Entities
         public RoomsDetailVM GetRoomsDetailVMForDetail(int id, IHostingEnvironment env)
         {
             var room = this.Room.Single(i => i.Id == id);
-            return new RoomsDetailVM (env)
+            return new RoomsDetailVM(env)
             {
                 Id = room.Id,
                 Name = room.Name,
@@ -141,64 +144,54 @@ namespace BookingWebsite.Models.Entities
             };
         }
 
-        //public void AddCustomer(CustomersCreateVM customer)
-        //{
+        public RoomsEditVM GetRoomForEditById(int id)
+        {
+            Room roomToSend = Room.Single(i => i.Id == id);
+            return new RoomsEditVM
+            {
+                Id = roomToSend.Id,
+                Name = roomToSend.Name,
+                Number = roomToSend.Number,
+                Description = roomToSend.Description,
+                Price = roomToSend.Price,
+                Size = roomToSend.Size
+            };
+        }
 
+        public void CreateRoom(RoomsCreateVM room)
+        {
+            var roomToAdd = new Room
+            {
+                Name = room.Name,
+                Number = room.Number,
+                Description = room.Description,
+                Price = room.Price,
+                Size = room.Size
+            };
 
-        //    //var customerToAdd = new Customer
-        //    //{
+            Room.Add(roomToAdd);
+            SaveChanges();
+        }
 
-        //    //    FirstName = customer.FirstName,
-        //    //    Email = customer.Email,
-        //    //    City = customer.City,
-        //    //    AddressLine1 = customer.AddressLine1,
-        //    //    AddressLine2 = customer.AddressLine2,
-        //    //    LastName = customer.LastName,
-        //    //    Telephone = customer.Telephone,
-        //    //    Mobilephone = customer.Mobilephone,
-        //    //    ZipCode = customer.ZipCode,
-        //    //    SocialSecurityNumber = customer.SocialSecurityNumber,
+        public void UpdateRoom(RoomsEditVM room)
+        {
+            Room roomToUpdate = this.Room.Single(i => i.Id == room.Id);
 
+            if (room.Name != null) roomToUpdate.Name = room.Name;
+            roomToUpdate.Number = room.Number;
+            if (room.Description != null) roomToUpdate.Description = room.Description;
+            if (room.Price != null) roomToUpdate.Price = room.Price;
+            if (room.Size != null) roomToUpdate.Size = room.Size;
 
+            SaveChanges();
+        }
 
-        //    //};
-        //    //Customer.Add(customerToAdd);
+        public void DeleteRoom(int id)
+        {
+            var roomToDelete = this.Room.Single(i => i.Id == id);
 
-        //    SaveChanges();
-
-        //}
-
-        //public Customer[] GetCustomersForIndex()
-        //{
-        //    return Customer.ToArray();
-        //}
-
-        //public void AddUser(UserCreateVM usr)
-        //{
-        //    User userToAdd = new User
-        //    {
-        //        //Customer_Id = Customer.SingleOrDefault(i => i.Email == usr.Email).CustomerId,
-        //        Customer_Id = Customer.Single(i => i.Email == usr.Email).CustomerId,
-
-
-        //    };
-        //    User.Add(userToAdd);
-        //    SaveChanges();
-
-        //}
-
-        //public Customer FindCustomerById(int id)
-        //{
-        //    return Customer.SingleOrDefault(i => i.CustomerId == id);
-        //}
-
-        //internal void EditCustomer(Customer customer)
-        //{
-        //    var customerToFind = Customer.Find(customer.CustomerId);
-        //    customerToFind.FirstName = customer.FirstName;
-        //    customerToFind.LastName = customer.LastName;
-        //    customerToFind.Telephone = customer.Telephone;
-        //    SaveChanges();
-        //}
-    }
+            Room.Remove(roomToDelete);
+            SaveChanges();
+        }
+    }        
 }

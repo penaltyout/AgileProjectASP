@@ -7,11 +7,12 @@
         <title>User list</title>
     </head>
     <body>
-        <h3>List of users</h3>
+        <div class="title">List of users</div>
+        <div class="subtitle">Here you can see the list of all registered users. Click userID to see the details.</div><br />
         @foreach (var user in Model)
         {
             <ul>
-                <li><h4><a asp-controller="users" asp-action="detail" asp-route-id="@user">@user.FirstName @user.LastName</a></h4></li>
+                <li><h4><a asp-controller="users" asp-action="detail" asp-route-id="@user">@user.FirstName @user.LastName (@user.Id)</a></h4></li>
             </ul>
         }
     </body>

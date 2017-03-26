@@ -15,7 +15,6 @@ namespace BookingWebsite
 {
     public class Startup
     {
-      
         public void ConfigureServices(IServiceCollection services)
         {
             var connString = @"Data Source=bookinz.database.windows.net;Initial Catalog=Bookinz;Persist Security Info=True;User ID=bookinz;Password=8zb-KqP-7Uz-ycA";
@@ -30,18 +29,17 @@ namespace BookingWebsite
             
             services.AddSession();
             services.AddMemoryCache();
-            services.AddMvc();
-            
+            services.AddMvc();   
         }
 
        
         public void Configure(IApplicationBuilder app)
         {
-                app.UseStaticFiles();
-                app.UseSession();
-                app.UseDeveloperExceptionPage();
-                app.UseIdentity();
-                app.UseMvcWithDefaultRoute();
+            app.UseStaticFiles();
+            app.UseSession();
+            app.UseDeveloperExceptionPage();
+            app.UseIdentity();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

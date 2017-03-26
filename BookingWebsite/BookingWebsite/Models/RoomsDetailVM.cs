@@ -13,6 +13,7 @@ namespace BookingWebsite.Models
         {
             this.env = env;
         }
+
         private IHostingEnvironment env;
         public int Id { get; set; }
         public string Name { get; set; }

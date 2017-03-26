@@ -5,64 +5,46 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookingWebsite.Models.Entities;
 using BookingWebsite.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookingWebsite.Controllers
 {
     public class BookingsController : Controller
     {
+        UserManager<IdentityUser> userManager;
         HotelASPContext context;
 
-        public BookingsController(HotelASPContext context)
+        public BookingsController(HotelASPContext context, UserManager<IdentityUser> userManager)
         {
             this.context = context;
+            this.userManager = userManager;
         }
 
-        //public IActionResult Index()
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View();
-        //    else
-        //    {
-        //        var models = context.GetBookingsForIndex();
+        public IActionResult Index()
+        {
+            var models = context.GetBookingsIndexVMForIndex();
+            return View(models);
+        }
 
-        //        return View(models);
-        //    }
-        //}
+        [Authorize]
+        [HttpPost]
+        public IActionResult Create(BookingsCreateVM booking)
+        {
+            booking.UserId = context.GetUserIdFromAspNetUserId(userManager.GetUserId(HttpContext.User));
+            context.CreateBooking(booking);
+            return View(booking);
+        }
 
-        //[HttpGet]
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
+        [Authorize]
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            int bookingUserId = context.GetUserIdFromAspNetUserId(userManager.GetUserId(HttpContext.User));
 
-        //[HttpPost]
-        //public IActionResult Create(BookingsCreateVM booking)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return View();
-
-        //    context.AddBooking(booking);
-        //    return RedirectToAction("Index");
-        //}
-
-        //public IActionResult Edit(int id)
-        //{
-        //    var model = context.GetBookingForDetail(id);
-        //    return View(model);
-        //}
-
-        //[HttpPost]
-        //public IActionResult Edit(Booking booking)
-        //{
-        //    context.EditBooking(booking);
-        //    return RedirectToAction(nameof(BookingsController.Index));
-        //}
-
-        //[HttpGet]
-        //public IActionResult Detail(int id)
-        //{
-        //    var model = context.GetBookingForDetail(id);
-        //    return View(model);
-        //}
+            var model = context.GetBookingsDetailVMForUserBookingsDetail(bookingUserId);
+            return View(model);
+        }
     }
 }

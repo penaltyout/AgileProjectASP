@@ -1,9 +1,17 @@
 ﻿@model UsersDetailVM
 
-<h3>Name: @Model.FirstName @Model.LastName</h3>
-<h3>Address 1: @Model.AddressLine1</h3>
-<h3>Address 2: @Model.AddressLine2</h3>
-<h3>City: @Model.City</h3>
-<h3>Zip Code: @Model.ZipCode</h3><br />
+<div class="title">My page</div>
+<div class="subtitle">Here you can see your personal information on our website.</div><br />
+
+<div class="list">
+    <ul>
+        <li>Name: @Model.FirstName @Model.LastName</li>
+        <li>Address 1: @Model.AddressLine1</li>
+        <li>Address 2: @Model.AddressLine2</li>
+        <li>City: @Model.City</li>
+        <li>Zip Code: @Model.ZipCode</li>
+    </ul>
+</div>
+
 <p><h4><a href="~/users/edit/">Edit</a></h4><p>
-<p><h4><a href="~/users/index">Back to user list</a></h4></p>
+<p><a asp-controller="bookings" asp-action="detail">Check Bookings</a></p>

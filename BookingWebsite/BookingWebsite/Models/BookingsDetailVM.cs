@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BookingWebsite.Models
 {
-    public class BookingsEditVM
+    public class BookingsDetailVM
     {
         public int Id { get; set; }
         public int RoomId { get; set; }

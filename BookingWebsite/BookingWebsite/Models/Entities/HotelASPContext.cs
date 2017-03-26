@@ -10,8 +10,6 @@ namespace BookingWebsite.Models.Entities
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<User> User { get; set; }
 
-       
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Booking>(entity =>
@@ -74,7 +72,5 @@ namespace BookingWebsite.Models.Entities
                 entity.Property(e => e.ZipCode).HasMaxLength(50);
             });
         }
-
-        
     }
 }

@@ -1,13 +1,16 @@
 ﻿@using BookingWebsite.Models.Entities
 @model Booking
 @addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>Booking change</title>
     </head>
     <body>
-        <h1>Chage your booking</h1>
+        <div class="title">Chage your booking</div><br />
+        <div class="subtitle">Here you can make a change to your booking(s).</div><br />
+
         <form asp-controller="bookings" asp-action="edit">
             <label asp-for="RoomId"></label>
             <input asp-for="RoomId">
@@ -20,7 +23,5 @@
             <span style="color:red" asp-validation-for="EndDate"></span> <br />
             <input type="submit" value="Submit">
         </form>
-        <p><h4><a href="~/Bookings/Index">Back to booking list</a></h4></p>
-        <p><h4><a href="~/Home/Index">Back to main page</a></h4></p>
     </body>
 </html>

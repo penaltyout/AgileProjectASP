@@ -8,9 +8,9 @@ namespace BookingWebsite.Models
 {
     public class UsersLogInVM
     {
-        [Required(ErrorMessage = "Must enter a username")]
+        [Required(ErrorMessage = "Please enter username")]
         public string Username { get; set; }
-        [Required(ErrorMessage = "Enter a password")]
+        [Required(ErrorMessage = "Please enter password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

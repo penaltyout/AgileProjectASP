@@ -8,11 +8,12 @@ namespace BookingWebsite.Models
 {
     public class UsersRegisterVM
     {
-        [Required(ErrorMessage = "Enter a username")]
+        [Required(ErrorMessage = "Please enter username")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Enter a password")]
+        [Required(ErrorMessage = "Please enter password")]
         [DataType(DataType.Password)]
+
         public string Password { get; set; }
         public string AspNetUserId { get; set; }
         public string FirstName { get; set; }
