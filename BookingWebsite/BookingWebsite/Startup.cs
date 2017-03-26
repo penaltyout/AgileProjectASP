@@ -31,7 +31,6 @@ namespace BookingWebsite
             services.AddMemoryCache();
             services.AddMvc();   
         }
-
        
         public void Configure(IApplicationBuilder app)
         {
