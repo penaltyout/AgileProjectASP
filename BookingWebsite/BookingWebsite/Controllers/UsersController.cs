@@ -134,5 +134,13 @@ namespace BookingWebsite.Controllers
             signInManager.SignOutAsync();
             return RedirectToAction(nameof(UsersController.LogIn));
         }
+
+        public IActionResult GetHtml()
+        {
+            int bookingUserId = context.GetUserIdFromAspNetUserId(userManager.GetUserId(HttpContext.User));
+
+            var model = context.GetBookingsDetailVMForUserBookingsDetail(bookingUserId);
+            return PartialView("_Bookingbox", model);
+        }
     }
 }

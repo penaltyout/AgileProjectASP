@@ -1,5 +1,6 @@
 ﻿@model UsersDetailVM
 
+
 <div class="title">My page</div>
 <div class="subtitle">Here you can see your personal information on our website.</div><br />
 
@@ -12,6 +13,31 @@
         <li>Zip Code: @Model.ZipCode</li>
     </ul>
 </div>
+<input id="btnGetHtml" type="button" value="Show booking" />
+<div id="divResult"></div>
+
+
 
 <p><h4><a href="~/users/edit/">Edit</a></h4><p>
 <p><a asp-controller="bookings" asp-action="detail">Check Bookings</a></p>
+@section scripts {
+   
+<script src="~/js/jquery-3.1.0.min.js"></script>
+   <script>
+ var divResult = $("#divResult");
+       $("#btnGetHtml").click(function () {
+
+           $.ajax({
+               url: "/users/GetHtml",
+               type: "GET",
+               success: function (html) {
+                   divResult.html(html);
+               }
+
+
+           })
+
+       });
+</script>
+
+}

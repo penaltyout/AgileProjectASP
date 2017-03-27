@@ -2,6 +2,7 @@
     position: relative;
     min-height: 100%;
 }
+input { color: black;}
 
 body {
     background: linear-gradient(#2b2b2b, gray);
@@ -38,6 +39,7 @@ div.title {
 }
 
 div.subtitle {
+    
     font-family: 'Alfa Slab One', cursive;
     font-size: 20px;
     text-align: center;
@@ -61,5 +63,6 @@ div.box {
 img {
     width: 700px;
 }
+
 
 font-family: 'Shrikhand', cursive; font-family: 'Alfa Slab One', cursive; font-family: 'Adamina', serif;

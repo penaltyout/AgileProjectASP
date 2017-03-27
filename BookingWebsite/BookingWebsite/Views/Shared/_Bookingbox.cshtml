@@ -1,0 +1,22 @@
+﻿@model BookingsDetailVM[]
+
+
+
+<div class="title">Your bookings</div>
+<div class="subtitle">Here you can see all your booking(s) that you have made.</div><br />
+
+@foreach (var item in @Model)
+{
+    <div class="box">
+        <div class="list">
+            <ul>
+                <li><h1>Booking no. @item.Id</h1></li>
+                <li>Room nr. @item.RoomNumber</li>
+                <li>Check in: @item.StartDate</li>
+                <li>Check out: @item.EndDate</li>
+                <li>Status: @item.Statuscode</li>
+                <li><a href="~/Bookings/Edit/@item.Id">Change booking</a></li>
+            </ul>
+        </div>
+    </div>
+}

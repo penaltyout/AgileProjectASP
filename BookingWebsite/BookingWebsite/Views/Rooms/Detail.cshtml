@@ -20,18 +20,19 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <form asp-controller="bookings" asp-action="create">
-        <input type="hidden" name="RoomId" value="@Model.Id" />
-        <label>Check In</label>
-        <input type="datetime" name="StartDate" placeholder="Year/Month/Day" />
-        <br />
-        <label>Check Out</label>
-        <input type="datetime" name="EndDate" placeholder="Year/Month/Day" />
-        <br />
-        <input type="submit" value="Book" />
-        <br />
-    </form>
-
+    
+        <form asp-controller="bookings" asp-action="create">
+            <input type="hidden" name="RoomId" value="@Model.Id" />
+            <label>Check In</label>
+            <input type="datetime" name="StartDate" placeholder="Year/Month/Day" />
+            <br />
+            <label>Check Out</label>
+            <input type="datetime" name="EndDate" placeholder="Year/Month/Day" />
+            <br />
+            <input type="submit" value="Book" />
+            <br />
+        </form>
+    
     @*<div class="container">
         <form asp-controller="bookings" asp-action="create">
             <input type="hidden" name="RoomId" value="@Model.Id" />
