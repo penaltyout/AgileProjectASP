@@ -4,6 +4,7 @@
 <div class="subtitle">Here you can see all bookings with detailed information.</div><br />
 @foreach (var item in @Model)
 {
+    <hr />
     <ul>
         <li>Id: @item.Id</li>
         <li><a asp-controller="users" asp-action="detail" asp-route-id="@item.UserId">Customer name: @item.CustomerName</a></li>
@@ -11,5 +12,13 @@
         <li>Start date: @item.StartDate</li>
         <li>End date: @item.EndDate</li>
     </ul>
-    <hr />
+
 }
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
